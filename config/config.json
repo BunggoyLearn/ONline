@@ -1,26 +1,18 @@
 {
   "development": {
-    "database": {
-      "username": "",
-      "password": "",
-      "database": "",
-      "host": "",
-      "dialect": "postgres"
-    },
-    "apiKeys": {
-      "discord": "discord_api_key"
-    }
+    "username": "${DB_DEV_USER}",
+    "password": "${DB_DEV_PASS}",
+    "database": "${ONLINE_DB}",
+    "host": "${DB_DEV_HOST}",
+    "port": "${DB_DEV_PORT}",
+    "dialect": "postgres"
   },
   "production": {
-    "database": {
-      "username": "",
-      "password": "",
-      "database": "",
-      "host": "",
-      "dialect": "postgres"
-    },
-    "apiKeys": {
-      "discord": "discord_api_key"
-    }
+    "username": "${DB_PROD_USER}",
+    "password": "${DB_PROD_PASS}",
+    "database": "${ONLINE_DB}",
+    "host": "${DB_PROD_HOST}",
+    "port": "${DB_PROD_PORT}",
+    "dialect": "postgres"
   }
 }
