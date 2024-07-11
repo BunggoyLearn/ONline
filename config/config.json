@@ -1,0 +1,26 @@
+{
+  "development": {
+    "database": {
+      "username": "",
+      "password": "",
+      "database": "",
+      "host": "",
+      "dialect": "postgres"
+    },
+    "apiKeys": {
+      "discord": "discord_api_key"
+    }
+  },
+  "production": {
+    "database": {
+      "username": "",
+      "password": "",
+      "database": "",
+      "host": "",
+      "dialect": "postgres"
+    },
+    "apiKeys": {
+      "discord": "discord_api_key"
+    }
+  }
+}

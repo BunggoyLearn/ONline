@@ -1,0 +1,8 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS online_db;
+
+-- CREATE DATABASE
+CREATE DATABASE online_db;
+
+-- CONNECT DATABASE
+\c online_db;
