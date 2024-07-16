@@ -8,11 +8,11 @@ const path = require("path");
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     host: "smtp.gmail.com",
-    port: 3001, // Port 587 is used for emails apparently. let's see how it works with 3001
-    secure: false, // Use `true` for port 465, `false` for all other ports
+    port: 465, // Port 587 is used for emails apparently. let's see how it works with 465
+    secure: true, // Use `true` for port 465, `false` for all other ports (port 465 is a secure port for emails)
     auth: {
-        user: process.env.USER,
-        pass: process.env.APP_PASSWORD,
+        user: process.env.DB_DEV_USER,
+        pass: process.env.DB_DEV_PASS,
     },
 });
 
@@ -21,29 +21,28 @@ const mailOptions = {
 
     from: {
         name: 'ONline App',
-        address: process.env.USER, // OR => 'ONlineApp@gmail.com'
+        address: process.env.DB_DEV_USER, 
     },
 
     to: [
-        "cris@example.com",
-        "jordan@example.com",
-        "ryan@example.com",
-        "bung@example.com"
+        "salgado.chris.m@gmail.com",
     ],
 
-    cc: [], // It's here if we want to use it. Otherwise we coud delete it..
+    //cc: [], // It's here if we want to use it. Otherwise we coud delete it..
+
 
     subject: "Subject of the email",
     text: "This is a test email",
     html: "<b>This is a test email</b>", // html body
 
-    // Adds attachments to our emailer / We can add more in the array
+
+    // Adds attachments from this repo to our email / We can add more in the array
     attachments: [
-        {
+        /* {
         filename: 'example.jpg',
         path: path.join(__dirname, 'example.jpg'),
         contentType: 'image/jpg'
-        },
+        }, */
     ]
 };
 
