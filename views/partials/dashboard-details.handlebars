@@ -1,0 +1,27 @@
+{{#if loggedIn}}
+<section class="container">
+    <h3 class="dashboard-title">{{user.username}}'s Posts</h3>
+    <section class="flex-row justify-center">
+        {{#each posts as |post|}}
+        {{> dashboard-post-details}}
+        {{/each}}
+    </section>
+    <button id="newPostBtn">Create New Post</button>
+    <form class="post" id="postForm" style="display: none;">
+        <label for="postTitle">Title:</label><br>
+        <input type="text" id="postTitle" placeholder="Title your post" required><br><br>
+        <label for="postContent">Content:</label><br>
+        <textarea id="postContent" placeholder="Write your post here" required></textarea><br><br>
+        <button id="submitPostBtn">Submit Post</button>
+    </form>
+    <form class="post" id="updatePostForm" style="display: none;">
+        <label for="updatedPostTitle">Updated Title:</label><br>
+        <input type="text" id="updatedPostTitle" placeholder="Title your post" required><br><br>
+        <label for="updatedPostContent">Updated Content:</label><br>
+        <textarea id="updatedPostContent" placeholder="Write your post here" required></textarea><br><br>
+        <button id="resubmitPostBtn">Submit Updated Post</button>
+    </form>
+</section>
+{{else}}
+{{> login-details}}
+{{/if}}
