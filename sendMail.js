@@ -1,7 +1,7 @@
 // Package Imports
 const { log } = require("console");
 const nodemailer = require("nodemailer");
-require("dotenv").config({ path: './.env'});
+require("dotenv").config();
 const path = require("path");
 
 // creates reusable transporter object
