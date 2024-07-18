@@ -1,15 +1,15 @@
 // Package Imports
-const router = require('express').Router();
-const dashboardRoutes = require('../controllers/dashboard');
-const homeRoutes = require('../controllers/home-controller');
-const apiRoutes = require('../controllers/api');
 const express = require('express');
+const router = require('express').Router();
+/* const dashboardRoutes = require('../controllers/dashboard'); */
+/* const homeRoutes = require('../controllers/home-controller');
+const apiRoutes = require('../controllers/api'); */
 const path = require('path');
 require("dotenv").config();
 
-router.use('/dashboard', dashboardRoutes);
+/* router.use('/dashboard', dashboardRoutes);
 router.use('/', homeRoutes);
-router.use('/api', apiRoutes);
+router.use('/api', apiRoutes); */
 
 const app = express();
 
@@ -24,16 +24,9 @@ router.get('', (req, res) => {
 /*************************  new code for review  ****************************/
 
 const http = require('http');
-const path = require('path');
 const fs = require('fs');
 const fsPromises = require('fs').promises;
 
-const logEvents = require('./logEvents');
-const EventEmitter = require('events');
-class Emitter extends EventEmitter { };
-// initialize object 
-const myEmitter = new Emitter();
-myEmitter.on('log', (msg, fileName) => logEvents(msg, fileName));
 const PORT = process.env.DB_DEV_PORT || 3001;
 
 const serveFile = async (filePath, contentType, response) => {
@@ -53,15 +46,11 @@ const serveFile = async (filePath, contentType, response) => {
         );
     } catch (err) {
         console.log(err);
-        myEmitter.emit('log', `${err.name}: ${err.message}`, 'errLog.txt');
-        response.statusCode = 500;
-        response.end();
     }
 }
 
 const server = http.createServer((req, res) => {
     console.log(req.url, req.method);
-    myEmitter.emit('log', `${req.url}\t${req.method}`, 'reqLog.txt');
 
     const extension = path.extname(req.url);
 
@@ -92,11 +81,11 @@ const server = http.createServer((req, res) => {
 
     let filePath =
         contentType === 'text/html' && req.url === '/'
-            ? path.join(__dirname, 'views', 'index.html')
+            ? path.join(__dirname, '..', 'index.html')
             : contentType === 'text/html' && req.url.slice(-1) === '/'
-                ? path.join(__dirname, 'views', req.url, 'index.html')
+                ? path.join(__dirname, '..', req.url, 'index.html')
                 : contentType === 'text/html'
-                    ? path.join(__dirname, 'views', req.url)
+                    ? path.join(__dirname, '..', req.url)
                     : path.join(__dirname, req.url);
 
     // makes .html extension not required in the browser
@@ -117,7 +106,7 @@ const server = http.createServer((req, res) => {
                 res.end();
                 break;
             default:
-                serveFile(path.join(__dirname, 'views', '404.html'), 'text/html', res);
+                serveFile(path.join(__dirname, 'html', '404.html'), 'text/html', res);
         }
     }
 });
