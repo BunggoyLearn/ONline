@@ -1,0 +1,74 @@
+{{!-- Main Event Layout --}}
+{{> header}}
+
+<main>
+    <div class="container">
+        <h1>Events</h1>
+
+        {{!-- Displays Events --}}
+        <section id="event-list">
+            {{#each events}}
+                <div class="event">
+                    <h2>{{this.title}}</h2>
+                    <p>{{this.description}}</p>
+                    <p>{{format_date this.date}} at {{format_time this.time}}</p>
+                    <button class="edit-event-btn" data-id="{{this.id}}">Edit</button>
+                    <button class="delete-event-btn" data-id="{{this.id}}">Delete</button>
+                </div>
+            {{/each}}
+        </section>
+
+        {{!-- Form for Creating New Event --}}
+        <section id="new-event-form">
+            <h2>Create New Event</h2>
+            <form id="create-event-form">
+                <div class="form-group">
+                    <label for="event-title">Title:</label>
+                    <input type="text" id="event-title" name="title" placeholder = "required">
+                </div>
+                <div class="form-group">
+                    <label for="event-description">Description:</label>
+                    <textarea id="event-description" name="description" placeholder = "required"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="event-date">Date:</label>
+                    <input type="date" id="event-date" name="date" placeholder = "required">
+                </div>
+                <div class="form-group">
+                    <label for="event-time">Time:</label>
+                    <input type="time" id="event-time" name="time" placeholder = "required">
+                </div>
+                <button type="submit">Create Event</button>
+            </form>
+        </section>
+
+        {{!-- Form for Updating Existing Event --}}
+        <section id="update-event-form" style="display: none;">
+            <h2>Update Event</h2>
+            <form id="edit-event-form">
+                <div class="form-group">
+                    <label for="edit-event-title">Title:</label>
+                    <input type="text" id="edit-event-title" name="title" placeholder = "required">
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-description">Description:</label>
+                    <textarea id="edit-event-description" name="description" placeholder = "required"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-date">Date:</label>
+                    <input type="date" id="edit-event-date" name="date" placeholder = "required">
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-time">Time:</label>
+                    <input type="time" id="edit-event-time" name="time" placeholder = "required">
+                </div>
+                <input type="hidden" id="edit-event-id">
+                <button type="submit">Update Event</button>
+            </form>
+        </section>
+    </div>
+</main>
+
+{{> footer}}
+
+<script src="/js/events.js"></script>
