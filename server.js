@@ -35,6 +35,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/routes', require('./routes/index')); //Cris: I added this line to reference index.js in routes folder
 
 app.use('/dashboard', dashboardRoutes);
 app.use(routes);
