@@ -30,7 +30,6 @@ const mailOptions = {
 
     //cc: [], // It's here if we want to use it. Otherwise we coud delete it..
 
-
     subject: "Subject of the email",
     text: "This is a test email",
     html: "<b>This is a test email</b>", // html body
