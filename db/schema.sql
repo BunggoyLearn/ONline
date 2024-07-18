@@ -1,8 +1,18 @@
--- DROP DATABASE
+-- Drop the database if it exists
 DROP DATABASE IF EXISTS online_db;
 
--- CREATE DATABASE
+-- Create the database
 CREATE DATABASE online_db;
 
--- CONNECT DATABASE
+-- Connect to the new database
 \c online_db;
+
+-- Create the users table
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
