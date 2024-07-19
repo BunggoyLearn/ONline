@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Events, sendMail } = require('../models');
+const { User, Events } = require('../models');
 
 router.get('/', async (req, res) => { 
   try {
@@ -9,8 +9,6 @@ router.get('/', async (req, res) => {
     }
 
     const userData = await User.findByPk(req.session.user_id);
-
-
     const user = userData.get({ plain: true });
 
     res.render('dashboard', {
