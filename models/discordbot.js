@@ -1,7 +1,38 @@
 require('dotenv').config();
 require('./register-commands');
+const uuid = require('uuid');
+const dayjs = require('dayjs')
+//import dayjs from 'dayjs' // ES 2015
+const relativeTime = require("dayjs/plugin/relativeTime");
+
+dayjs.extend(relativeTime)
+
+const sampleArray = [
+    {
+        id: '1234',
+        content: 'this is object 1',
+        date: '2024-07-19',
+    },
+    {
+        id: '5678',
+        content: 'this is object 2',
+        date: '2024-08-19',
+    },
+    {
+        id: '9',
+        content: 'this is object 3',
+        date: '2024-06-19',
+    },
+];
+
+console.log(sampleArray[1].content);
 
 const { Client, IntentsBitField, EmbedBuilder } = require('discord.js');
+const id = uuid.v4();
+const commands = ['/help', ' /event', ' /whenis'];
+const eventArray = sampleArray;
+
+//Discord bot needs all of these discord functionalities to run
 
 const client = new Client({
     intents: [
@@ -13,9 +44,13 @@ const client = new Client({
     ],
 });
 
+//A console log that tells us the bot is online
+
 client.on('ready', (c) => {
     console.log(`${c.user.tag} is online`);
 });
+
+//Interaction handler
 
 client.on('interactionCreate', (interaction) => {
     if (!interaction.isChatInputCommand()) return;
@@ -26,36 +61,65 @@ client.on('interactionCreate', (interaction) => {
 
     if (interaction.commandName === 'event') {
         const title = interaction.options.get('title');
-        const description = interaction.options.get('description')
-        const event = new EmbedBuilder()
-            .setTitle(title)
-            .setDescription(`@everyone ${description} `)
-            .setColor('Random')
-            .addFields({
-                name: 'Field title',
-                value: 'Some random value',
-                inline: true,
-            });
+        const description = interaction.options.get('description');
+        const date = interaction.options.get('date');
+        const time = interaction.options.get('time');
+        if (dayjs(`${date.value}`, 'YYYY-MM-DD', true).isValid()) {
+            const event = new EmbedBuilder()
+                .setTitle(title.value)
+                .setDescription(`@everyone ${description.value} `)
+                .setColor('Random')
+                .addFields(
+                    {
+                        name: 'id',
+                        description: 'This is the Unique ID',
+                        value: id,
+                    },
+                    {
+                        name: 'Date',
+                        description: 'This is the date',
+                        value: date.value,
+                        inline: true,
+                    },
+                    {
+                        name: 'Time',
+                        description: 'This is the time',
+                        value: time.value,
+                        inline: true,
+                    },
+                );
 
-        interaction.reply({ embeds: [event] });
+            interaction.reply({ embeds: [event] });
+        } else {
+            interaction.reply({ content: 'Something went wrong...', ephemeral: true });
+        }
+    }
+
+    if (interaction.commandName === 'whenis') {
+        const eventid = interaction.options.get('id');
+        const boolean = interaction.options.get('reveal');
+        const result = eventArray.filter((element) => element.id === eventid.value);
+        const eventObject = JSON.stringify(result, null, 2);
+        const object = JSON.parse(eventObject)[0];
+        console.log(object);
+        if (object) {
+            const date = object.date
+            futuredate = dayjs(date);
+            const duration = dayjs().to(futuredate);
+            console.log(duration);
+            if (duration.includes('in')) {
+                if (boolean === true) {
+                    interaction.reply({ content: `This event will take place ${duration}.` });
+                } else {
+                    interaction.reply({ content: `This event will take place ${duration}.`, ephemeral: true });
+                }
+            } else {
+                interaction.reply({ content: `This date passed ${duration}`, ephemeral: true });
+            }
+        } else {
+            interaction.reply({ content: 'This id does not exist', ephemeral: true });
+        }
     }
 })
-
-client.on('messageCreate', (message) => {
-    if (message.content === 'event') {
-        const event = new EmbedBuilder()
-            .setTitle('Event title')
-            .setDescription('Event Description')
-            .setColor('Random')
-            .addFields({
-                name: 'Field title',
-                value: 'Some random value',
-                inline: true,
-            });
-
-        message.reply({ embeds: [event] });
-    }
-});
-const commands = ['/help', ' /create', ' /joke'];
 
 client.login(process.env.TOKEN);

@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const { REST, Routes, ApplicationCommandOptionType } = require('discord.js');
 
 const commands = [
@@ -24,8 +25,32 @@ const commands = [
             },
             {
                 name: 'date',
-                description: 'Add the day of the event here',
+                description: 'Add the date of the event here (Format: YYYY-MM-DD)',
                 type: ApplicationCommandOptionType.String,
+                required: true,
+            },
+            {
+                name: 'time',
+                description: 'Add the time the event will start at (Format: 24:00)',
+                type: ApplicationCommandOptionType.String,
+                required: true,
+            },
+        ]
+    },
+    {
+        name: 'whenis',
+        description: 'Gives list of commands',
+        options: [
+            {
+                name: 'id',
+                description: 'Insert the id of the event',
+                type: ApplicationCommandOptionType.String,
+                required: true,
+            },
+            {
+                name: 'reveal',
+                description: 'Shows the output to the entire server',
+                type: ApplicationCommandOptionType.Boolean,
                 required: true,
             },
         ]
@@ -40,7 +65,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
             Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
             { body: commands }
         )
-        console.log('Command registered')
+        console.log('Commands registered')
     } catch (error) {
         console.log(`There was an error ${error}`);
     }
