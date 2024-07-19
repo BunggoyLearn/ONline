@@ -54,16 +54,17 @@ client.on('ready', (c) => {
 
 client.on('interactionCreate', (interaction) => {
     if (!interaction.isChatInputCommand()) return;
-
+    //help command, if you type help it lists out the commands you can use with the bot
     if (interaction.commandName === 'help') {
         interaction.reply(`Here is a list of our commands: ${commands}`);
     }
-
+    //event creation command allows you to create events in discord
     if (interaction.commandName === 'event') {
         const title = interaction.options.get('title');
         const description = interaction.options.get('description');
         const date = interaction.options.get('date');
         const time = interaction.options.get('time');
+        //Makes sure that the user entered the date in the correct format or throws an error
         if (dayjs(`${date.value}`, 'YYYY-MM-DD', true).isValid()) {
             const event = new EmbedBuilder()
                 .setTitle(title.value)
@@ -88,13 +89,14 @@ client.on('interactionCreate', (interaction) => {
                         inline: true,
                     },
                 );
-
+            //Post the event
             interaction.reply({ embeds: [event] });
         } else {
             interaction.reply({ content: 'Something went wrong...', ephemeral: true });
         }
     }
-
+    
+    //Start of the when is command which grabs an event date and tells you how far in the future it is from now.
     if (interaction.commandName === 'whenis') {
         const eventid = interaction.options.get('id');
         const boolean = interaction.options.get('reveal');
@@ -102,12 +104,15 @@ client.on('interactionCreate', (interaction) => {
         const eventObject = JSON.stringify(result, null, 2);
         const object = JSON.parse(eventObject)[0];
         console.log(object);
+        //If the object is not null or undefined continue or else tell the user this id does not exist
         if (object) {
             const date = object.date
             futuredate = dayjs(date);
             const duration = dayjs().to(futuredate);
             console.log(duration);
+            //If the duration includes the phrase 'in' which only occurs in future tense send it through otherwise tell the user it has already passed
             if (duration.includes('in')) {
+                //If the user selected true then post this publicly; otherwise post it to only the user
                 if (boolean === true) {
                     interaction.reply({ content: `This event will take place ${duration}.` });
                 } else {
@@ -122,4 +127,5 @@ client.on('interactionCreate', (interaction) => {
     }
 })
 
+//Logs in the bot to discord using unqiue token
 client.login(process.env.TOKEN);
