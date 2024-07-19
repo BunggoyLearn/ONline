@@ -25,8 +25,6 @@ const sampleArray = [
     },
 ];
 
-console.log(sampleArray[1].content);
-
 const { Client, IntentsBitField, EmbedBuilder } = require('discord.js');
 const id = uuid.v4();
 const commands = ['/help', ' /event', ' /whenis'];
@@ -101,14 +99,12 @@ client.on('interactionCreate', (interaction) => {
         const result = eventArray.filter((element) => element.id === eventid.value);
         const eventObject = JSON.stringify(result, null, 2);
         const object = JSON.parse(eventObject)[0];
-        console.log(object);
         if (object) {
             const date = object.date
             futuredate = dayjs(date);
             const duration = dayjs().to(futuredate);
-            console.log(duration);
             if (duration.includes('in')) {
-                if (boolean === true) {
+                if (boolean.value === true) {
                     interaction.reply({ content: `This event will take place ${duration}.` });
                 } else {
                     interaction.reply({ content: `This event will take place ${duration}.`, ephemeral: true });
