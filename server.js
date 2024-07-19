@@ -5,12 +5,11 @@ const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const routes = require('./routes');
-const userRoutes = require('./routes/users-sql');
 const sequelize = require('./config/connection');
 const helpers = require('./utils/helper');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001; // Ensure PORT is 3001
 
 const sess = {
   secret: 'Super secret secret',
@@ -37,18 +36,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
-app.use('/api', userRoutes);
-
-// Handle 404
-app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
-});
-
-// Error logging middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Server is listening on http://localhost:${PORT}`));
