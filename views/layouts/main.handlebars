@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONline</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>ONline</h1>
+    </header>
+    <nav>
+        <a href="/"><b>Home</b></a>
+        <a href="/dashboard"><b>Dashboard</b></a>
+        {{#if loggedIn}}
+        <a id="logout" class=""><b>Logout</b></a>
+        {{else}}
+        <a href="/login"><b>Login</b></a>
+        {{/if}}
+    </nav>
+    <main>
+        <div class="body-sect">
+            {{{body}}}
+        </div>
+    </main>
+
+    {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
