@@ -25,8 +25,6 @@ const sampleArray = [
     },
 ];
 
-console.log(sampleArray[1].content);
-
 const { Client, IntentsBitField, EmbedBuilder } = require('discord.js');
 const id = uuid.v4();
 const commands = ['/help', ' /event', ' /whenis'];
@@ -95,7 +93,7 @@ client.on('interactionCreate', (interaction) => {
             interaction.reply({ content: 'Something went wrong...', ephemeral: true });
         }
     }
-    
+
     //Start of the when is command which grabs an event date and tells you how far in the future it is from now.
     if (interaction.commandName === 'whenis') {
         const eventid = interaction.options.get('id');
@@ -103,17 +101,15 @@ client.on('interactionCreate', (interaction) => {
         const result = eventArray.filter((element) => element.id === eventid.value);
         const eventObject = JSON.stringify(result, null, 2);
         const object = JSON.parse(eventObject)[0];
-        console.log(object);
+
         //If the object is not null or undefined continue or else tell the user this id does not exist
         if (object) {
             const date = object.date
             futuredate = dayjs(date);
             const duration = dayjs().to(futuredate);
-            console.log(duration);
             //If the duration includes the phrase 'in' which only occurs in future tense send it through otherwise tell the user it has already passed
             if (duration.includes('in')) {
-                //If the user selected true then post this publicly; otherwise post it to only the user
-                if (boolean === true) {
+                if (boolean.value === true) {
                     interaction.reply({ content: `This event will take place ${duration}.` });
                 } else {
                     interaction.reply({ content: `This event will take place ${duration}.`, ephemeral: true });
