@@ -1,0 +1,11 @@
+{{#if loggedIn}}
+    {{> dashboard-details}}
+{{else}}
+    {{> login-details}}
+{{/if}}
+
+<script>
+    console.log("loggedIn:", {{ loggedIn }});
+</script>
+
+<script src="../public/js/script.js"></script>
