@@ -40,9 +40,13 @@ nav > div {
   /* Styles for direct div children of nav */
   background-color: var(--medium-gray);
   margin: 20px;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 20px;
   border: var(--discord-blue) outset 8px;
+}
+
+nav > div > a {
+  text-decoration: none;
 }
 
 a {
@@ -85,4 +89,7 @@ a {
   width: auto;
   transition: transform 0.2s;
   transition: opacity 10s ease-in-out, transform 0.2s;
+}
+
+.nav-btns {
 }
