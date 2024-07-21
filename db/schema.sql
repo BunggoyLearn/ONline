@@ -16,3 +16,10 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE events (
+  id SERIAL PRIMARY KEY,
+  content 
+  date
+  time 
+)
