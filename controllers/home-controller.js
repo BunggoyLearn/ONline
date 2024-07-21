@@ -1,22 +1,34 @@
-const express = require('express');
-const { User, Event, sendMail } = require('../models');
+const express = require("express");
+const { User, Event, sendMail } = require("../models");
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
+router.get("/", (req, res, next) => {
   try {
-    res.render('home', { layout: 'main', loggedIn: req.session.loggedIn });
+    res.render("home", { layout: "main", loggedIn: req.session.loggedIn });
   } catch (error) {
     next(error);
   }
 });
 
-router.get('/login', (req, res, next) => {
+router.get("/login", (req, res, next) => {
   try {
     if (req.session.loggedIn) {
-      res.redirect('/');
+      res.redirect("/");
       return;
     }
-    res.render('login', { layout: 'main', loggedIn: false });
+    res.render("login", { layout: "main", loggedIn: false });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/signup", (req, res, next) => {
+  try {
+    if (req.session.loggedIn) {
+      res.redirect("/");
+      return;
+    }
+    res.render("signup", { layout: "main", loggedIn: false });
   } catch (error) {
     next(error);
   }
