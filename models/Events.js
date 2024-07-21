@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Event extends Model {}
+class Event extends Model { }
 
 Event.init({
   title: {
@@ -10,7 +10,7 @@ Event.init({
   },
   description: {
     type: DataTypes.TEXT,
-    allowNull: true
+    allowNull: false
   },
   date: {  // This holds the date of the event.
     type: DataTypes.DATEONLY,  // Stores only the date.
