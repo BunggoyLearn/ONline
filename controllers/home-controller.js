@@ -34,4 +34,12 @@ router.get("/signup", (req, res, next) => {
   }
 });
 
+router.get("/aboutus", (req, res, next) => {
+  try {
+    res.render("aboutus", { layout: "main", loggedIn: false });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

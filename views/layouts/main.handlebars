@@ -8,18 +8,20 @@
   </head>
 
   <body>
-    <header>
-      <h1 id="brand-header">ONline</h1>
+    <header class="header-layout">
+      <h1 id="brand-header"><img src="/assets/images/logo.png" /></h1>
     </header>
-    <nav>
+    <nav class="nav-btns">
       <div id="home-btn"><a href="/"><b>Home</b></a></div>
-      <div id="dashboard-btn"><a href="/dashboard"><b>Dashboard</b></a></div>
+      <div class="nav-btns" id="dashboard-btn"><a href="/dashboard"><b
+          >Dashboard</b></a></div>
       {{#if loggedIn}}
         <div id="logout-btn"><a id="logout" class="logout"><b
             >Logout</b></a></div>
       {{else}}
         <div id="login-btn"><a href="/login"><b>Login</b></a></div>
       {{/if}}
+      <div id="aboutus-btn"><a href="/aboutus"><b>About us</b></a></div>
     </nav>
     <main>
       <div class="body-sect">
