@@ -23,6 +23,6 @@ CREATE TABLE events (
   date DATE NOT NULL,
   time TIME NOT NULL,
   user_id SERIAL,
-  FOREIGN KEY(user_id),
+  FOREIGN KEY(user_id)
   REFERENCES users(user_id)
 );
