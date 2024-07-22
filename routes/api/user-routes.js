@@ -61,6 +61,11 @@ router.post('/login', async (req, res) => {
   }
 });
 
+//Get all users
+router.get('/dashboard', async (req, res) => {
+  res.render('dashboard-details');
+});
+
 // Logout
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
