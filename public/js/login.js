@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const loginFormHandler = async (event) => {
     event.preventDefault();
-
     const email = document.querySelector('#email-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
     
@@ -15,14 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        alert('Failed to log in.');
+        const data = await response.json();
+        alert('Failed to log in: ' + (data.message || 'Unknown error'));
       }
     }
   };
 
+  // Function to handle the signup process
   const signupFormHandler = async (event) => {
     event.preventDefault();
-
     const username = document.querySelector('#username-signup').value.trim();
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
@@ -37,16 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        alert('Failed to sign up.');
+        const data = await response.json();
+        alert('Failed to sign up: ' + (data.message || 'Unknown error'));
       }
     }
   };
 
-  document
-    .querySelector('.login-form')
-    .addEventListener('submit', loginFormHandler);
 
-  document
-    .querySelector('.signup-form')
-    .addEventListener('submit', signupFormHandler);
+  const loginForm = document.querySelector('.login-form');
+  if (loginForm) {
+    loginForm.addEventListener('submit', loginFormHandler);
+  } else {
+    console.log('Login form not found.');
+  }
+
+  const signupForm = document.querySelector('.signup-form');
+  if (signupForm) {
+    signupForm.addEventListener('submit', signupFormHandler);
+  } else {
+    console.log('Signup form not found.');
+  }
 });
