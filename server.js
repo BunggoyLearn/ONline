@@ -9,7 +9,7 @@ const sequelize = require("./config/connection");
 const helpers = require("./utils/helper");
 
 const app = express();
-const PORT = process.env.PORT || 3001; // Ensure PORT is 3001
+const PORT = process.env.PORT || 3001;
 
 const sess = {
   secret: "Super secret secret",
@@ -35,7 +35,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// Routes
 app.use(routes);
+
+// Event route
+app.get('/events', (req, res) => {
+  Event.findAll().then(events => {
+    res.render('events', { events, loggedIn: req.session.loggedIn });
+  }).catch(err => {
+    console.error(err);
+    res.status(500).json(err);
+  });
+});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
