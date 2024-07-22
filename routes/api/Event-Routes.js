@@ -6,8 +6,20 @@ router.get('/', async (req, res) => {
   try {
     const events = await Event.findAll();
     res.status(200).json(events);
+    res.render('events');
   } catch (err) {
-    console.error('error fetching events',err);
+    console.error('error fetching events', err);
+    res.status(500).json(err);
+  }
+});
+
+//Get one event by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const eventData = await Event.findByPk(req.params.id);
+    const event = eventData.get({ plain: true })
+    res.render('event', event);
+  } catch (err) {
     res.status(500).json(err);
   }
 });
@@ -23,7 +35,7 @@ router.post('/', async (req, res) => {
     });
     res.status(201).json(newEvent);
   } catch (err) {
-    console.error('error creating an event',err);
+    console.error('error creating an event', err);
     res.status(500).json(err);
   }
 });

@@ -3,25 +3,25 @@
     "version": "1.0.0",
     "description": "ONline is a one stop shop for gamers to connect.",
     "dependencies": {
-      "bcrypt": "^5.0.1",
-      "connect-session-sequelize": "^7.1.0",
-      "dayjs": "^1.11.11",
-      "discord.js": "^14.15.3",
-      "dotenv": "^10.0.0",
-      "express": "^4.17.1",
-      "express-handlebars": "^5.3.3",
-      "express-session": "^1.17.2",
-      "install": "^0.13.0",
-      "nodemailer": "^6.9.14",
-      "npm": "^10.8.2",
-      "pg": "^8.5.1",
-      "sequelize": "^6.6.5",
-      "uuid": "^10.0.0"
+        "bcrypt": "^5.0.1",
+        "connect-session-sequelize": "^7.1.0",
+        "dayjs": "^1.11.11",
+        "discord.js": "^14.15.3",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-handlebars": "^5.3.3",
+        "express-session": "^1.17.2",
+        "install": "^0.13.0",
+        "nodemailer": "^6.9.14",
+        "npm": "^10.8.2",
+        "pg": "^8.5.1",
+        "sequelize": "^6.6.5",
+        "uuid": "^10.0.0"
     },
     "main": "models/index.js",
     "scripts": {
-      "dev": "nodemon - server-js"
-      },
+        "dev": "nodemon - server-js"
+    },
     "keywords": [],
     "author": "",
     "license": "ISC"
