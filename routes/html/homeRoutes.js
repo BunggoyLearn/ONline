@@ -5,7 +5,7 @@ const { User } = require('../models');
 
 router.get('/', async (req, res) => {
     try {
-        const eventData = await Event.findall({
+        const eventData = await Event.findAll({
             order: [
                 ['date', 'DESC'],
                 sequelize.fn('max', sequelize.col('age')),
@@ -21,20 +21,24 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-    try {
-        const userData = await User.findall({
-            order: [
-                attributes: { exclude: ['password'] },
-                order: [['name', 'DESC']],
-            ],
-        });
+  try {
+    const userData = await User.findAll({
+      attributes: { exclude: ['password'] },
+      order: [['name', 'DESC']],
+    });
 
-        const users = userData.map((object) => object.get({ plain: true }));
+    res.status(200).json(userData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
 
-        res.render('homepage', { users });
-    } catch (err) {
-        res.status(500).json(err);
-    }
+
+router.get('/events', (req, res) => {
+  res.render('events', {
+    loggedIn: req.session.loggedIn
+  });
 });
 
 module.exports = router;
