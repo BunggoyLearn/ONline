@@ -111,5 +111,27 @@ a {
   transition: opacity 10s ease-in-out, transform 0.2s;
 }
 
-.nav-btns {
+.styled-list {
+  list-style-type: none;
+}
+
+.styled-list li {
+  /* background-color: var(--discord-blue); */
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  font-size: 1em;
+}
+
+.styled-list li:hover {
+  background-color: var(--discord-green);
+  color: var(--white);
+  transform: scale(1.02);
+  transition: transform 0.2s, background-color 0.2s, color 0.2s;
+  text-align: left;
+}
+
+.bold{
+  text-decoration: bold;
 }
