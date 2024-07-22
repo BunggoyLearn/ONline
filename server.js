@@ -5,6 +5,7 @@ const exphbs = require("express-handlebars");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const routes = require("./routes");
+const eventRoutes = require('./routes/events');
 const sequelize = require("./config/connection");
 const helpers = require("./utils/helper");
 
@@ -46,6 +47,19 @@ app.get('/events', (req, res) => {
     console.error(err);
     res.status(500).json(err);
   });
+});
+
+app.use(eventRoutes)
+
+router.get('/events', async (req, res) => {
+  try {
+      const eventsData = await Event.findAll();
+      const events = eventsData.map(event => event.get({ plain: true }));
+      res.render('events', { events, loggedIn: req.session.loggedIn });
+  } catch (error) {
+      console.error('Error fetching events:', error);
+      res.status(500).send('Error fetching events');
+  }
 });
 
 sequelize.sync({ force: false }).then(() => {
