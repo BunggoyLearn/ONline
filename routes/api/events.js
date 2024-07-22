@@ -23,7 +23,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Edit event logic
+  document.querySelectorAll('.edit-event-btn').forEach(button => {
+    button.addEventListener('click', (event) => {
+      const id = event.target.getAttribute('data-id');
+
+      const eventElement = event.target.closest('.event');
+      const title = eventElement.querySelector('h2').textContent;
+      const description = eventElement.querySelector('p:nth-of-type(1)').textContent;
+      const date = eventElement.querySelector('p:nth-of-type(2)').textContent.split(' at ')[0];
+      const time = eventElement.querySelector('p:nth-of-type(2)').textContent.split(' at ')[1];
+
+      document.getElementById('edit-event-id').value = id;
+      document.getElementById('edit-event-title').value = title;
+      document.getElementById('edit-event-description').value = description;
+      document.getElementById('edit-event-date').value = date;
+      document.getElementById('edit-event-time').value = time;
+
+      document.getElementById('update-event-form').style.display = 'block';
+      document.getElementById('new-event-form').style.display = 'none';
+    });
+  });
+
   const editEventForm = document.getElementById('edit-event-form');
   if (editEventForm) {
     editEventForm.addEventListener('submit', async (event) => {
@@ -49,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Delete event logic
   document.querySelectorAll('.delete-event-btn').forEach(button => {
     button.addEventListener('click', async (event) => {
       const id = event.target.getAttribute('data-id');
@@ -63,28 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         alert('Failed to delete event');
       }
-    });
-  });
-
-  // Edit button logic
-  document.querySelectorAll('.edit-event-btn').forEach(button => {
-    button.addEventListener('click', (event) => {
-      const id = event.target.getAttribute('data-id');
-
-      const eventElement = event.target.closest('.event');
-      const title = eventElement.querySelector('h2').textContent;
-      const description = eventElement.querySelector('p:nth-of-type(1)').textContent;
-      const date = eventElement.querySelector('p:nth-of-type(2)').textContent.split(' at ')[0];
-      const time = eventElement.querySelector('p:nth-of-type(2)').textContent.split(' at ')[1];
-
-      document.getElementById('edit-event-id').value = id;
-      document.getElementById('edit-event-title').value = title;
-      document.getElementById('edit-event-description').value = description;
-      document.getElementById('edit-event-date').value = date;
-      document.getElementById('edit-event-time').value = time;
-
-      document.getElementById('edit-event-form').style.display = 'block';
-      document.getElementById('create-event-form').style.display = 'none';
     });
   });
 });
