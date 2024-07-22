@@ -4,7 +4,7 @@ const eventRoutes = require('./Event-Routes');
 const sendMailRoutes = require('./sendMail-routes');
 
 router.use('/user', userRoutes);
-router.use('/event', eventRoutes);
+router.use('/events', eventRoutes);
 router.use('/sendMail', sendMailRoutes);
 
 module.exports = router;

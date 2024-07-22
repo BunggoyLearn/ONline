@@ -56,3 +56,5 @@ const sendMail = async (transporter, mailOptions) => {
 }
 
 sendMail(transporter, mailOptions);
+
+module.exports = sendMail(transporter, mailOptions);

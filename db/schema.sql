@@ -19,7 +19,10 @@ CREATE TABLE users (
 
 CREATE TABLE events (
   id SERIAL PRIMARY KEY,
-  content 
-  date
-  time 
-)
+  description TEXT NOT NULL, 
+  date DATE NOT NULL,
+  time TIME NOT NULL,
+  user_id SERIAL,
+  FOREIGN KEY(user_id),
+  REFERENCES users(user_id)
+);
