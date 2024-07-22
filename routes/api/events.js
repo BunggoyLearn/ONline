@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Event } = require('../models'); // Ensure the model path is correct
+const { Event } = require('../../models');
 
 router.get('/events', async (req, res) => {
     try {
