@@ -9,24 +9,26 @@ dayjs.extend(relativeTime)
 
 const sampleArray = [
     {
-        id: '1234',
-        content: 'this is object 1',
-        date: '2024-07-22',
+        id: '2ce7b2f7-49cc-4b28-9256-c7a1e0dabef2',
+        title: 'This is the title',
+        description: 'this is object 1',
+        date: '2024-07-24',
+        time: '12:00'
     },
+
     {
-        id: '5678',
-        content: 'this is object 2',
-        date: '2024-08-19',
-    },
-    {
-        id: '9',
-        content: 'this is object 3',
-        date: '2024-06-19',
-    },
+        "id": "df69e111-c22d-4a25-b521-a19473f35d07",
+        "title": "Let's hang and chill allllll day",
+        "description": "Vibin tbh lets party.",
+        "date": 20250105,
+        "time": 1800
+    }
+
 ];
 
 const { Client, IntentsBitField, EmbedBuilder } = require('discord.js');
-const id = uuid.v4();
+//const id = uuid.v4();
+const id = '2ce7b2f7-49cc-4b28-9256-c7a1e0dabef2'
 const commands = ['/help', ' /event', ' /whenis'];
 const eventArray = sampleArray;
 
