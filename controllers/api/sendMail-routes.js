@@ -81,7 +81,7 @@ app.post("/", function (req, res) {
     } else {
       console.log("Email send: " + info.response)
     }
-    response.redirect("/")
+    response.redirect("/dashboard")
   })
 })
 
