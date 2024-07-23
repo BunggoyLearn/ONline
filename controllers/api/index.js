@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const userRoutes = require('./user-routes');
+const userRoutes = require('../../routes/api/user-routes');
 const eventRoutes = require('../../routes/api/Event-Routes');
 const sendMailRoutes = require('./sendMail-routes');
 
