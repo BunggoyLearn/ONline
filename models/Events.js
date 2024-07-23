@@ -1,9 +1,15 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Event extends Model { }
 
 Event.init({
+  id: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+    allowNull: false,
+    primaryKey: true
+  },
   title: {
     type: DataTypes.STRING,
     allowNull: false
