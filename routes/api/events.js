@@ -1,4 +1,4 @@
-const express = require('express');
+/* const express = require('express');
 const router = express.Router();
 const { Event } = require('../../models');
 
@@ -12,4 +12,4 @@ router.get('/events', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = router; */
