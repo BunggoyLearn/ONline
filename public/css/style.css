@@ -116,11 +116,9 @@ a {
 }
 
 .styled-list li {
-  /* background-color: var(--discord-blue); */
   margin: 10px 0;
   padding: 10px;
   border-radius: 5px;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   font-size: 1em;
 }
 
@@ -132,6 +130,61 @@ a {
   text-align: left;
 }
 
-.bold{
+.bold {
   text-decoration: bold;
+}
+
+/*******************************************************/
+/******************** Forms Style ********************/
+/*******************************************************/
+
+.form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: var(--light-gray);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--black);
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  border-color: var(--black);
+  outline: none;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.btn-primary {
+  background-color: var(--discord-blue);
+  color: white;
+  cursor: pointer;
 }
