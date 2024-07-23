@@ -101,3 +101,4 @@ function removeEventFromUI(id) {
   const eventElement = document.querySelector(`.event[data-id="${id}"]`);
   eventElement.remove();
 }
+//update
