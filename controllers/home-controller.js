@@ -42,4 +42,12 @@ router.get("/aboutus", (req, res, next) => {
   }
 });
 
+router.get("/events", (req, res, next) => {
+  try {
+    res.render("events", { layout: "main", loggedIn: true });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
