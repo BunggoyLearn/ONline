@@ -15,6 +15,15 @@ const sampleArray = [
         date: '2024-07-24',
         time: '12:00'
     },
+
+    {
+        "id": "df69e111-c22d-4a25-b521-a19473f35d07",
+        "title": "Let's hang and chill allllll day",
+        "description": "Vibin tbh lets party.",
+        "date": 20250105,
+        "time": 1800
+    }
+
 ];
 
 const { Client, IntentsBitField, EmbedBuilder } = require('discord.js');
