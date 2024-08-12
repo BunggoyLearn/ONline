@@ -1,56 +1,49 @@
-const express = require('express');
-const http = require('http');
-const path = require('path');
-const nodemailer = require('nodemailer');
-require("dotenv").config();
-
-const app = express();
-const server = http.Server(app);
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, "views/events.handlebars")));
-
-// Routes
-
-app.get("*/*", function (req, res) {
-  response.sendFile(path.join(__dirname, "views/events.handlebars"))
-})
+/* const express = require('express');
+const router = require('express').Router();
+const Form = document.querySelector('#create-event-form');
+let eventTitle = document.getElementById('event-title');
+let email = document.getElementById('to');
+let eventDate = document.getElementById('event-date');
+let eventTime = document.getElementById('event-time');
 
 
-app.post("/events", function (req, response) {
-  var title = req.body.title;
-  var to = req.body.to;
-  var date = req.body.date;
-  var time = req.body.time;
 
-  var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    host: "smtp.gmail.com",
-    port: 465, // Port 587 is used for emails apparently. let's see how it works with 465
-    secure: true, // Use `true` for port 465, `false` for all other ports (port 465 is a secure port for emails)
-    auth: {
-      user: "online.app.project@gmail.com",
-      pass: "hlns godk icrk orgm",
-    },
-  });
 
-  var mailOptions = {
 
-    from: 'ONline App',
+Form.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-    to: to,
+  let formData = {
 
-    subject: "ONline Event Created!",
+    name: eventTitle.value,
+    email: email.value,
+    subject: eventTitle.value,
 
-    text: `You've created an event with ONline on ${date} on ${time}!`,
   }
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error)
+  let xhr = new XMLHttpRequest();
+
+  xhr.open('POST', '/events');
+  xhr.setRequestHeader('content-type', 'application/jason');
+  xhr.onload = function() {
+
+    console.log(xhr.responseText);
+
+    if( xhr.responseText == 'success') {
+
+      alert('Email sent!');
+
     } else {
-      console.log("Email send: " + info.response)
+
+      alert('Something went wrong!')
+
     }
-    response.redirect("/dashboard")
-  });
+
+  }
+  
+  xhr.send(JSON.stringify(formData));
+
 });
+
+
+module.exports = router; */
