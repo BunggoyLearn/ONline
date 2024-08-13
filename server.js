@@ -1,13 +1,16 @@
+require('dotenv').config();
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
+const nodemailer = require("nodemailer");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const routes = require("./controllers");
 const eventRoutes = require('./routes/api/events');
 const sequelize = require("./config/connection");
 const helpers = require("./utils/helper");
+const { log } = require('console');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -25,6 +28,7 @@ const sess = {
 };
 
 app.use(session(sess));
+app.use(express.json());
 
 const hbs = exphbs.create({ helpers });
 
@@ -47,6 +51,42 @@ app.get('/events', (req, res) => {
     console.error(err);
     res.status(500).json(err);
   });
+});
+
+app.post('/events', (req, res) => {
+  console.log(req.body);
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: { 
+      user: process.env.DB_DEV_USER,
+      pass: process.env.DB_DEV_PASS,
+    }
+  })
+  const mailOptions = {
+
+    from: 'ONline App',
+
+    to: req.body.email,
+
+    subject: req.body.subject,
+
+    text: `You've created an event with ONline on ${eventDate} at ${eventTime}!`,
+
+  }
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+
+      console.log(error);
+      res.send('error');
+      
+    } else {
+      console.log('Email has been sent!' + info.response);
+      res.send('success')
+      
+    }
+  })
 });
 
 sequelize.sync({ force: false }).then(() => {
