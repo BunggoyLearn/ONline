@@ -104,6 +104,7 @@ function removeEventFromUI(id) {
 
 
 
+
 /*********************************************** NodeMailer Section *********************************************/
 
 
@@ -154,3 +155,5 @@ Form.addEventListener('submit', (e) => {
   xhr.send(JSON.stringify(formData));
 
 });
+//update for Bung
+
