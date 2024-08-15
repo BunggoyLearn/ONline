@@ -86,7 +86,7 @@ app.post('/events', (req, res) => {
       res.send('success')
       
     }
-  })
+  }) 
 });
 
 sequelize.sync({ force: false }).then(() => {
