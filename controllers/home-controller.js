@@ -42,9 +42,15 @@ router.get("/aboutus", (req, res, next) => {
   }
 });
 
-router.get("/events", (req, res, next) => {
+router.get("/events", async (req, res, next) => {
   try {
-    res.render("events", { layout: "main", loggedIn: true });
+    const eventData = await Event.findAll();
+    const events = eventData.map(event => event.get({ plain: true }));
+    res.render("events", {
+      layout: "main",
+      loggedIn: true,
+      events: events
+    });
   } catch (error) {
     next(error);
   }

@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const dashboardRoutes = require('../controllers/dashboard');
+//const dashboardRoutes = require('../controllers/dashboard');
 const homeRoutes = require('../controllers/home-controller');
 const apiRoutes = require('./api');
 
