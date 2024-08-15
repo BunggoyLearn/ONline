@@ -71,7 +71,7 @@ app.post('/events', (req, res) => {
 
     subject: req.body.subject,
 
-    text: `You've created an event with ONline on ${eventDate} at ${eventTime}!`,
+    text: `You've created an event with ONline on ${req.body.date} at ${req.body.time}!`,
 
   }
 
