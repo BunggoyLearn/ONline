@@ -1,34 +1,44 @@
-# ONline
-A gaming community planner that syncs up to email and a discord bot!
+## ONline
 
-# Project Requirements
+  # License
+  ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+  
+## Description
+  
+  - A gaming community planner that syncs up to email and a discord bot!
 
-### `You and your group will use everything you’ve learned over the past six weeks to create a real-world full-stack application that you’ll be able to showcase to potential employers. The user story and acceptance criteria will depend on the project that you create, but your project must fulfil the following requirements:`
+  ![Webpage Preview](./public/assets/images/readmeImages/ONline-HomePage.png)
+  
+## Table of Contents
+  
+  - [Installation](#installation)
+  - [Features](#features)
+  - [Contributors](#contributors)
+  
+## Installation
+  
+  - You'll need to have NodeJS and SQL installed to run this project.
+  
+  - After cloning to your local repo, you'll need to run 'npm i' in your terminal to install necessary packages. 
+  
+  - You'll need to setup your .env file with the required criteria.
+  
+## Features
+  
+  - Create events!
 
-    - Use Node.js and Express.js to create a RESTful API.
+  - Sends emails!
 
-    - Use Handlebars.js as the templating engine.
+  - Keeps track of events!
 
-    - Use PostgreSQL and the Sequelize ORM for the database.
 
-    - Have both GET and POST routes for retrieving and adding new data.
+## Contributors
+  
+  - https://github.com/BunggoyLearn
 
-    - Be deployed using Render (with data).
+  - https://github.com/JordanGWiz
 
-    - Use at least one new library, package, or technology that we haven’t discussed.
+  - https://github.com/RyanPetersen-89
 
-    - Have a polished UI.
-
-    - Be responsive.
-
-    - Be interactive (i.e., accept and respond to user input).
-
-    - Have a folder structure that meets the MVC paradigm.
-
-    - Include authentication (express-session and cookies).
-
-    - Protect API keys and sensitive information with environment variables.
-
-    - Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
-
-    - Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
+  - https://github.com/CrisSal2
+  
