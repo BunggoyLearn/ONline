@@ -1,6 +1,7 @@
-const express = require("express");
-const { User, Event, sendMail } = require("../models");
-const router = express.Router();
+const router = require('express').Router();
+const sequelize = require('../config/connection');
+const { Event } = require('../models');
+const { User } = require('../models');
 
 router.get("/", (req, res, next) => {
   try {
@@ -50,6 +51,20 @@ router.get("/events", async (req, res, next) => {
       layout: "main",
       loggedIn: true,
       events: events
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/users', async (req, res, next) => {
+  try {
+    const userData = await User.findAll();
+    const users = userData.map(user => user.get({ plain: true }));
+    res.render("users", {
+      layout: "main",
+      loggedIn: true,
+      users: users,
     });
   } catch (error) {
     next(error);

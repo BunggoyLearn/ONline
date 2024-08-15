@@ -4,8 +4,7 @@ const session = require("express-session");
 const exphbs = require("express-handlebars");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-const routes = require("./controllers");
-const eventRoutes = require('./routes/api/events');
+const routes = require("./controllers/");
 const sequelize = require("./config/connection");
 const helpers = require("./utils/helper");
 
@@ -38,16 +37,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.use(routes);
-
-// Event route
-app.get('/events', (req, res) => {
-  Event.findAll().then(events => {
-    res.render('events', { events, loggedIn: req.session.loggedIn });
-  }).catch(err => {
-    console.error(err);
-    res.status(500).json(err);
-  });
-});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
