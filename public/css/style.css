@@ -34,6 +34,8 @@ nav {
   text-align: center;
   display: flex;
   justify-content: center;
+  align-items: center; /* Center items vertically */
+  gap: 20px; /* Space between items */
 }
 
 nav > div {
@@ -241,4 +243,24 @@ button {
   font-size: 16px;
   font-weight: bold;
   transition: background-color 0.3s;
+}
+
+/* =========== Clock style ============ */
+
+.time-header {
+  background-color: var(--medium-gray);
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: var(--discord-blue) outset 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--discord-green);
+}
+
+#clock {
+  font-family: "Courier New", monospace;
+  font-size: 20px;
+  color: var(--light-gray);
 }
