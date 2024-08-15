@@ -47,6 +47,8 @@ router.put('/:id', async (req, res) => {
     const updatedEvent = await Event.update(req.body, {
       where: { id: req.params.id }
     });
+    res.status(200).json(edits),
+      res.render('edits');
     if (!updatedEvent) {
       res.status(404).json({ message: 'No event found with this id!' });
       return;

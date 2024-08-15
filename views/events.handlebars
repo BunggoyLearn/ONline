@@ -25,40 +25,17 @@
         <button type="submit">Create Event</button>
     </form>
 
-    <!-- Edit Event Form -->
-    <form id="edit-event-form">
-        <div class="form-group">
-            <label for="edit-event-title">Event Title</label>
-            <input type="text" id="edit-event-title" name="title" required>
-        </div>
-        <div class="form-group">
-            <label for="edit-event-description">Event Description</label>
-            <textarea id="edit-event-description" name="description"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="to">Enter your Email</label>
-            <input type="email" name="to" id="to">
-        </div>
-        <div class="form-group">
-            <label for="edit-event-date">Event Date</label>
-            <input type="date" id="edit-event-date" name="date" required>
-        </div>
-        <div class="form-group">
-            <label for="edit-event-time">Event Time</label>
-            <input type="time" id="edit-event-time" name="time" required>
-        </div>
-        <button type="submit">Update Event</button>
-    </form>
-
     <div id="events-list">
         {{#each events}}
         <div class="event">
-            <h2>{{this.title}}</h2>
-            <h3> {{this.id}} </h3>
-            <p>{{this.description}}</p>
+            <h2 id="upcoming-event-title">{{this.title}}</h2>
+            <h3 id="upcoming-event-id"> {{this.id}} </h3>
+            <p id="upcoming-event-description">{{this.description}}</p>
             <p>{{this.date}} at {{this.time}}</p>
-            <a class="button" href="/:id" id="{{this.id}}"><b>Edit</b></a>
-            <button class="delete-event-btn" id="{{this.id}}">Delete</button>
+            <div id="upcoming-event-date" display="none"> {{this.date}} </div>
+            <div id="upcoming-event-time" display="none"> {{this.time}} </div>
+            <a id="edit" class="button" href="./edit.handlebars" id="{{this.id}}"><b>Edit</b></a>
+            <button class="delete-event-btn" data-id="{{this.id}}">Delete</button>
         </div>
         {{/each}}
     </div>
