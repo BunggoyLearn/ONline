@@ -30,32 +30,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const editEventForm = document.getElementById('edit-event-form');
-  if (editEventForm) {
-    editEventForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
+  async function editFormHandler(event) {
+    event.preventDefault();
 
-      const id = document.getElementById('edit-event-id').value;
-      const title = document.getElementById('edit-event-title').value;
-      const description = document.getElementById('edit-event-description').value;
-      const date = document.getElementById('edit-event-date').value;
-      const time = document.getElementById('edit-event-time').value;
+    const id = document.getElementById('upcoming-event-id').value;
+    const title = document.getElementById('upcoming-event-title').value;
+    const description = document.getElementById('upcoming-event-description').value;
+    const date = document.getElementById('upcoming-event-date').value;
+    const time = document.getElementById('upcoming-event-time').value;
 
-      const response = await fetch(`/api/events/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ title, description, date, time }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      if (response.ok) {
-        // Update the event in the UI dynamically
-        updateEventInUI({ id, title, description, date, time });
-      } else {
-        const errorData = await response.json();
-        alert(`Failed to update event: ${errorData.message}`);
-      }
+    const response = await fetch(`/api/events/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ title, description, date, time }),
+      headers: { 'Content-Type': 'application/json' },
     });
-  }
+
+    if (response.ok) {
+      // Update the event in the UI dynamically
+      updateEventInUI({ id, title, description, date, time });
+    } else {
+      const errorData = await response.json();
+      alert(`Failed to update event: ${errorData.message}`);
+    }
+  };
+
+  document
+    .getElementById('edit')
+    .addEventListener('click', editFormHandler);
 
   document.querySelectorAll('.delete-event-btn').forEach(button => {
     button.addEventListener('click', async (event) => {
