@@ -57,6 +57,21 @@ router.get("/events", async (req, res, next) => {
   }
 });
 
+router.get('/events/:id', async (req, res, next) => {
+  try {
+    const eventData = await Event.findOne();
+    const singleEvent = eventData.map(event => event.get({ plain: true }));
+    res.render("events/:id", {
+      layout: "main",
+      loggedin: true,
+      singleEvent: singleEvent
+    })
+      .then()
+  } catch (error) {
+    next(error);
+  }
+})
+
 router.get('/users', async (req, res, next) => {
   try {
     const userData = await User.findAll();
