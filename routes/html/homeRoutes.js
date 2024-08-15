@@ -1,23 +1,23 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Event } = require('../models');
-const { User } = require('../models');
+const { Event } = require('../../models');
+const { User } = require('../../models');
 
 router.get('/', async (req, res) => {
-    try {
-        const eventData = await Event.findAll({
-            order: [
-                ['date', 'DESC'],
-                sequelize.fn('max', sequelize.col('age')),
-            ],
-        });
+  try {
+    const eventData = await Event.findAll({
+      order: [
+        ['date', 'DESC'],
+        sequelize.fn('max', sequelize.col('age')),
+      ],
+    });
 
-        const events = eventData.map((object) => object.get({ plain: true }));
+    const events = eventData.map((object) => object.get({ plain: true }));
 
-        res.render('homepage', { events });
-    } catch (err) {
-        res.status(500).json(err);
-    }
+    res.render('homepage', { events });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.get('/', async (req, res) => {
@@ -34,11 +34,11 @@ router.get('/', async (req, res) => {
   }
 });
 
-
-router.get('/events', (req, res) => {
+/*
+router.get('/events', async (req, res) => {
   res.render('events', {
-    loggedIn: req.session.loggedIn
+    loggedIn: req.session.loggedIn,
   });
 });
-
+*/
 module.exports = router;

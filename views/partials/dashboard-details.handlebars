@@ -27,6 +27,17 @@
         </div>
         {{/each}}
     </div>
+    <div id="events-list">
+        {{#each events}}
+        <div class="event">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <p>{{this.date}} at {{this.time}}</p>
+            <button class="edit-event-btn" data-id="{{this.id}}">Edit</button>
+            <button class="delete-event-btn" data-id="{{this.id}}">Delete</button>
+        </div>
+        {{/each}}
+    </div>
 </section>
 {{else}}
 {{> login-details}}
