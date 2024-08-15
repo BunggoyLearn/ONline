@@ -4,29 +4,21 @@
     <div class="give-some-space">
         <a href="/events" class="btn btn-primary">Create Event</a>
     </div>
-    <div class="userlist">
-        {{#each users as |user| }}
-        <div>
-            <h4>
-                {{user.username}}
-            </h4>
+    <div id="events-list">
+    {{#each events}}
+    <div class="event">
+        <h2>{{this.title}}</h2>
+        <h3> {{this.id}} </h3>
+        <p>{{this.description}}</p>
+        <p>{{this.date}} at {{this.time}}</p>
+        <div class="event-buttons">
+            <a href="/edit" id="{{this.id}}"><b>Edit</b></a>
+            <button class="delete-event-btn" data-id="{{this.id}}">Delete</button>
         </div>
-        {{/each}}
     </div>
-    <div class="eventlist">
-        {{#each events as |event| }}
-        <div>
-            <h4>
-                {{event.title}}
-            </h4>
-        </div>
-        <div>
-            <h5>
-                {{event.description}}
-            </h5>
-        </div>
-        {{/each}}
-    </div>
+    {{/each}}
+</div>
+
 </section>
 {{else}}
 {{> login-details}}

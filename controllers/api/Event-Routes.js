@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
     const event = eventData.get({ plain: true })
     res.render('event', event);
   } catch (err) {
-    console.error('error fetching events',err);
+    console.error('error fetching events', err);
     res.status(500).json(err);
   }
 });
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
     });
     res.status(201).json(newEvent);
   } catch (err) {
-    console.error('error creating an event',err);
+    console.error('error creating an event', err);
     res.status(500).json(err);
   }
 });

@@ -26,8 +26,7 @@
     </form>
 
     <!-- Edit Event Form -->
-    <form id="edit-event-form" style="display: none;">
-        <input type="hidden" id="edit-event-id">
+    <form id="edit-event-form">
         <div class="form-group">
             <label for="edit-event-title">Event Title</label>
             <input type="text" id="edit-event-title" name="title" required>
@@ -51,17 +50,18 @@
         <button type="submit">Update Event</button>
     </form>
 
-    <div id="events-list">
+    {{!-- <div id="events-list">
         {{#each events}}
         <div class="event">
             <h2>{{this.title}}</h2>
+            <h3> {{this.id}} </h3>
             <p>{{this.description}}</p>
             <p>{{this.date}} at {{this.time}}</p>
-            <button class="edit-event-btn" data-id="{{this.id}}">Edit</button>
-            <button class="delete-event-btn" data-id="{{this.id}}">Delete</button>
+            <a class="button" href="/:id" id="{{this.id}}"><b>Edit</b></a>
+            <button class="delete-event-btn" id="{{this.id}}">Delete</button>
         </div>
         {{/each}}
-    </div>
+    </div> --}}
 </section>
 {{else}}
 {{> login-details}}
@@ -69,3 +69,4 @@
 
 <script src="../../js/events.js"></script>
 <script src="../../js/nodeMailer.js"></script>
+<script src="../../js/events.js"></script>
