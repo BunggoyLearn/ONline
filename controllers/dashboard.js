@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
       res.render('dashboard', { message: 'Please log in to view the dashboard' });
       return;
     }
-
+    console.log(req.session);
     const userData = await User.findByPk(req.session.user_id);
     const user = userData.get({ plain: true });
 
