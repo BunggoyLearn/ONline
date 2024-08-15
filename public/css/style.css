@@ -34,6 +34,8 @@ nav {
   text-align: center;
   display: flex;
   justify-content: center;
+  align-items: center; /* Center items vertically */
+  gap: 20px; /* Space between items */
 }
 
 nav > div {
@@ -241,4 +243,74 @@ button {
   font-size: 16px;
   font-weight: bold;
   transition: background-color 0.3s;
+}
+
+/* =========== Clock style ============ */
+
+.time-header {
+  background-color: var(--medium-gray);
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: var(--discord-blue) outset 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--discord-green);
+}
+
+#clock {
+  font-family: "Courier New", monospace;
+  font-size: 20px;
+  color: var(--light-gray);
+}
+
+/* ============= Event Containers ================= */
+
+#events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.event {
+  background-color: var(--charcoal);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--medium-gray);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event h2,
+.event h3,
+.event p {
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.event-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.event > .event-buttons > a,
+.event > .event-buttons > .delete-event-btn {
+  background-color: var(--discord-blue);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.event > .event-buttons > a:hover,
+.event > .event-buttons > .delete-event-btn:hover {
+  background-color: var(--discord-green);
+  transition: 0.5s;
 }

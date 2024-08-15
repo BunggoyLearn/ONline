@@ -1,17 +1,19 @@
-const format_time = (date) => {
-  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-};
+document.addEventListener("DOMContentLoaded", () => {
+  function updateClock() {
+    const clockElement = document.getElementById("clock");
+    if (clockElement) {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const seconds = String(now.getSeconds()).padStart(2, "0");
+      const timeString = `${hours}:${minutes}:${seconds}`;
+      clockElement.textContent = timeString;
+    }
+  }
 
-const format_date = (date) => {
-  const options = {
-    month: 'numeric',
-    day: 'numeric',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true,
-  };
-  return new Date(date).toLocaleDateString(undefined, options);
-};
+ 
+  setInterval(updateClock, 1000);
 
-module.exports = { format_time, format_date };
+  
+  updateClock();
+});

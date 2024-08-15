@@ -5,17 +5,20 @@
         <a href="/events" class="btn btn-primary">Create Event</a>
     </div>
     <div id="events-list">
-        {{#each events}}
-        <div class="event">
-            <h2>{{this.title}}</h2>
-            <h3> {{this.id}} </h3>
-            <p>{{this.description}}</p>
-            <p>{{this.date}} at {{this.time}}</p>
+    {{#each events}}
+    <div class="event">
+        <h2>{{this.title}}</h2>
+        <h3> {{this.id}} </h3>
+        <p>{{this.description}}</p>
+        <p>{{this.date}} at {{this.time}}</p>
+        <div class="event-buttons">
             <a href="/edit" id="{{this.id}}"><b>Edit</b></a>
             <button class="delete-event-btn" data-id="{{this.id}}">Delete</button>
         </div>
-        {{/each}}
     </div>
+    {{/each}}
+</div>
+
 </section>
 {{else}}
 {{> login-details}}

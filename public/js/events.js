@@ -103,6 +103,7 @@ function removeEventFromUI(id) {
   eventElement.remove();
 }
 
+
 /*********************************************** NodeMailer Section *********************************************/
 
 

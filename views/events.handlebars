@@ -24,8 +24,6 @@
         </div>
         <button type="submit">Create Event</button>
     </form>
-
-    <div id="events-list">
         {{#each events}}
         <div class="event">
             <h2 id="upcoming-event-title">{{this.title}}</h2>
@@ -44,4 +42,6 @@
 {{> login-details}}
 {{/if}}
 
+<script src="../../js/events.js"></script>
+<script src="../../js/nodeMailer.js"></script>
 <script src="../../js/events.js"></script>
