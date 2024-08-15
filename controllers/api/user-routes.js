@@ -2,9 +2,21 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../../models');
 
+//Get all users
+router.get('/', async (req, res) => {
+  console.log('yo yo yo yo yo yo yo yo yo yo');
+  try {
+    const users = await User.findAll();
+    res.status(200).json(users);
+    res.render('users');
+  } catch (err) {
+    console.error('error fetching users', err);
+    res.status(500).json(err);
+  }
+});
+
 // Create new user
 router.post('/', async (req, res) => {
-  console.log('hello');
   try {
     const newUser = await User.create({
       username: req.body.username,
@@ -14,8 +26,8 @@ router.post('/', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.session.user_id = newUser.id;
-      res.status(200).json(newUser);
+      req.session.user_id = newUser.username;
+      res.status(201).json(newUser);
     });
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
@@ -52,7 +64,7 @@ router.post('/login', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.session.user_id = userData.id;
+      req.session.user_id = userData.username;
       console.log('User logged in:', userData.email);
       res.status(200).json({ user: userData, message: 'You are now logged in!' });
     });
@@ -60,11 +72,6 @@ router.post('/login', async (req, res) => {
     console.error('Login error:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
-});
-
-//Get all users
-router.get('/dashboard', async (req, res) => {
-  res.render('dashboard-details');
 });
 
 // Logout

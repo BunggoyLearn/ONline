@@ -12,6 +12,8 @@
       <h1 id="brand-header"><img src="/assets/images/logo.png" /></h1>
     </header>
     <nav class="nav-btns">
+      <h1 class="time-header">Current Time:
+        <span id="clock">{{time}}</span></h1>
       <div id="home-btn"><a href="/"><b>Home</b></a></div>
       <div class="nav-btns" id="dashboard-btn"><a href="/dashboard"><b
           >Dashboard</b></a></div>
@@ -32,6 +34,8 @@
     {{#if loggedIn}}
       <script src="/js/logout.js"></script>
     {{/if}}
+    <script src="/utils/helper.js"></script>
+
   </body>
 
 </html>
